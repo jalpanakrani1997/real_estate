@@ -1,11 +1,7 @@
 const mongoose = require("mongoose");
 
 const inquirySchema = new mongoose.Schema({
-  projectId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Projects', // Reference to the Projects model
-    required: true
-  },
+
   name: {
     type: String,
     required: true,
@@ -14,7 +10,7 @@ const inquirySchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    match: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
   },
   phone: {
     type: String,

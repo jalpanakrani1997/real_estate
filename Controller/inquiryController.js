@@ -40,7 +40,7 @@ const Inquiry = require("../Model/inquiryModel");
 
 exports.createInquiry = async (req, res) => {
   try {
-    const { name, email, phone, message, projectId } = req.body;
+    const { name, email, phone, message } = req.body;
 
     // Manual validation
     if (!name || name.length < 3) return res.status(400).json({ error: "Name must be at least 3 characters." });
@@ -48,9 +48,9 @@ exports.createInquiry = async (req, res) => {
     if (!email || !emailRegex.test(email)) return res.status(400).json({ error: "Invalid email." });
     if (phone && !/^\d{10}$/.test(phone)) return res.status(400).json({ error: "Phone number must be 10 digits." });
     if (!message || message.trim().length === 0) return res.status(400).json({ error: "Message is required." });
-    if (!projectId) return res.status(400).json({ error: "Project ID is required." });
+    // if (!projectId) return res.status(400).json({ error: "Project ID is required." });
 
-    const inquiry = await Inquiry.create({ name, email, phone, message, projectId });
+    const inquiry = await Inquiry.create({ name, email, phone, message });
     res.status(201).json({ success: true, inquiry });
   } catch (err) {
     res.status(500).json({ error: "Server error", detail: err.message });

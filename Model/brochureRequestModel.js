@@ -20,7 +20,6 @@ const brochureRequestSchema = new mongoose.Schema({
   },
   projectType: {
     type: String,
-    required: true
   },
   createdAt: {
     type: Date,
